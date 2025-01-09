@@ -1,0 +1,22 @@
+From 6ae5fdad389cdccd4ea16380c42d63450c739844 Mon Sep 17 00:00:00 2001
+From: Lev Chelyadinov <leva181777@gmail.com>
+Date: Sat, 7 Dec 2024 18:16:15 +0100
+Subject: [PATCH] Add borders to the dark mode
+
+---
+ packages/starlight/style/props.css | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/packages/starlight/style/props.css b/packages/starlight/style/props.css
+index 850713535ff..b086dee8cdc 100644
+--- a/packages/starlight/style/props.css
++++ b/packages/starlight/style/props.css
+@@ -45,7 +45,7 @@
+ 	--sl-color-bg-accent: var(--sl-color-accent-high);
+ 	--sl-color-hairline-light: var(--sl-color-gray-5);
+ 	--sl-color-hairline: var(--sl-color-gray-6);
+-	--sl-color-hairline-shade: var(--sl-color-black);
++	--sl-color-hairline-shade: var(--sl-color-gray-6);
+ 
+ 	--sl-color-backdrop-overlay: hsla(223, 13%, 10%, 0.66);
+ 

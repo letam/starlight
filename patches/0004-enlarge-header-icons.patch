@@ -1,0 +1,90 @@
+From 928686f650a6c0a448a8e0d837c2073312329bdb Mon Sep 17 00:00:00 2001
+From: Lev Chelyadinov <leva181777@gmail.com>
+Date: Sat, 7 Dec 2024 18:50:39 +0100
+Subject: [PATCH] Enlarge header icons
+
+---
+ .changeset/rich-toys-drive.md                        |  5 +++++
+ packages/starlight/components/MobileMenuFooter.astro |  1 -
+ packages/starlight/components/Select.astro           |  4 ++--
+ packages/starlight/components/SocialIcons.astro      | 11 +++++++++--
+ 4 files changed, 16 insertions(+), 5 deletions(-)
+ create mode 100644 .changeset/rich-toys-drive.md
+
+diff --git a/.changeset/rich-toys-drive.md b/.changeset/rich-toys-drive.md
+new file mode 100644
+index 00000000000..1851c27365e
+--- /dev/null
++++ b/.changeset/rich-toys-drive.md
+@@ -0,0 +1,5 @@
++---
++'@astrojs/starlight': minor
++---
++
++Enlarge header icons
+diff --git a/packages/starlight/components/MobileMenuFooter.astro b/packages/starlight/components/MobileMenuFooter.astro
+index 62eb23e62d4..89148d4415a 100644
+--- a/packages/starlight/components/MobileMenuFooter.astro
++++ b/packages/starlight/components/MobileMenuFooter.astro
+@@ -18,7 +18,6 @@ import type { Props } from '../props';
+ 		margin-inline-end: auto;
+ 		gap: 1rem;
+ 		align-items: center;
+-		padding-block: 1rem;
+ 	}
+ 	.social-icons:empty {
+ 		display: none;
+diff --git a/packages/starlight/components/Select.astro b/packages/starlight/components/Select.astro
+index 8be1685985c..3e76553a27f 100644
+--- a/packages/starlight/components/Select.astro
++++ b/packages/starlight/components/Select.astro
+@@ -29,7 +29,7 @@ interface Props {
+ 
+ <style>
+ 	label {
+-		--sl-label-icon-size: 0.875rem;
++		--sl-label-icon-size: 1.2rem;
+ 		--sl-caret-size: 1.25rem;
+ 		--sl-inline-padding: 0.5rem;
+ 		position: relative;
+@@ -63,7 +63,7 @@ interface Props {
+ 	select {
+ 		border: 0;
+ 		padding-block: 0.625rem;
+-		padding-inline: calc(var(--sl-label-icon-size) + var(--sl-inline-padding) + 0.25rem)
++		padding-inline: calc(var(--sl-label-icon-size) + var(--sl-inline-padding) + 0.5rem)
+ 			calc(var(--sl-caret-size) + var(--sl-inline-padding) + 0.25rem);
+ 		margin-inline: calc(var(--sl-inline-padding) * -1);
+ 		width: calc(var(--sl-select-width) + var(--sl-inline-padding) * 2);
+diff --git a/packages/starlight/components/SocialIcons.astro b/packages/starlight/components/SocialIcons.astro
+index 59557068f80..a945b856717 100644
+--- a/packages/starlight/components/SocialIcons.astro
++++ b/packages/starlight/components/SocialIcons.astro
+@@ -14,7 +14,7 @@ const links = Object.entries(config.social || {}) as [Platform, SocialConfig][];
+ 			{links.map(([platform, { label, url }]) => (
+ 				<a href={url} rel="me" class="sl-flex">
+ 					<span class="sr-only">{label}</span>
+-					<Icon name={platform} />
++					<Icon name={platform} size="1.2em" />
+ 				</a>
+ 			))}
+ 		</>
+@@ -24,9 +24,16 @@ const links = Object.entries(config.social || {}) as [Platform, SocialConfig][];
+ <style>
+ 	a {
+ 		color: var(--sl-color-text-accent);
+-		padding: 0.5em;
++		padding: 0.9em;
+ 		margin: -0.5em;
+ 	}
++
++	@media (min-width: 50rem) {
++		a {
++			padding: 0.8em;
++		}
++	}
++
+ 	a:hover {
+ 		opacity: 0.66;
+ 	}
+

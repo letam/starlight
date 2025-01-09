@@ -1,0 +1,73 @@
+From 3e909a9c3ca84a748e4504d49d3129eeb30832ec Mon Sep 17 00:00:00 2001
+From: Lev Chelyadinov <leva181777@gmail.com>
+Date: Sat, 7 Dec 2024 22:58:56 +0100
+Subject: [PATCH] Reduce the prominence of the selected sidebar item
+
+---
+ .changeset/hot-geese-crash.md                      |  5 +++++
+ packages/starlight/components/SidebarSublist.astro | 12 +++++++++++-
+ packages/starlight/user-components/Badge.astro     |  8 +-------
+ 3 files changed, 17 insertions(+), 8 deletions(-)
+ create mode 100644 .changeset/hot-geese-crash.md
+
+diff --git a/.changeset/hot-geese-crash.md b/.changeset/hot-geese-crash.md
+new file mode 100644
+index 00000000000..1f59dcb523d
+--- /dev/null
++++ b/.changeset/hot-geese-crash.md
+@@ -0,0 +1,5 @@
++---
++'@astrojs/starlight': minor
++---
++
++Reduce the prominence of the selected sidebar item
+diff --git a/packages/starlight/components/SidebarSublist.astro b/packages/starlight/components/SidebarSublist.astro
+index b521ba13ef5..b88840a108c 100644
+--- a/packages/starlight/components/SidebarSublist.astro
++++ b/packages/starlight/components/SidebarSublist.astro
+@@ -128,7 +128,17 @@ const { sublist, nested } = Astro.props;
+ 	[aria-current='page']:hover,
+ 	[aria-current='page']:focus {
+ 		font-weight: 600;
+-		color: var(--sl-color-text-invert);
++		color: var(--sl-color-text-accent);
++		position: relative;
++	}
++
++	[aria-current='page']::before {
++		content: '';
++		position: absolute;
++		width: 0.15rem;
++		height: 100%;
++		top: 0;
++		left: calc(-1 * var(--sl-sidebar-item-padding-inline));
+ 		background-color: var(--sl-color-text-accent);
+ 	}
+ 
+diff --git a/packages/starlight/user-components/Badge.astro b/packages/starlight/user-components/Badge.astro
+index 821cd0a32e3..f02b9fdf5dc 100644
+--- a/packages/starlight/user-components/Badge.astro
++++ b/packages/starlight/user-components/Badge.astro
+@@ -61,6 +61,7 @@ const {
+ 		border: 1px solid var(--sl-color-border-badge);
+ 		border-radius: 0.25rem;
+ 		font-family: var(--sl-font-system-mono);
++		font-weight: normal;
+ 		line-height: normal;
+ 		color: var(--sl-color-text-badge);
+ 		background-color: var(--sl-color-bg-badge);
+@@ -74,13 +75,6 @@ const {
+ 		padding: 0.125rem 0.375rem;
+ 	}
+ 
+-	/* outline variant */
+-	:global(.sidebar-content a[aria-current='page']) > .sl-badge {
+-		--sl-color-bg-badge: transparent;
+-		--sl-color-border-badge: currentColor;
+-		color: inherit;
+-	}
+-
+ 	/* Color variants */
+ 	.default {
+ 		--sl-color-bg-badge: var(--sl-badge-default-bg);
+
